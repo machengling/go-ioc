@@ -1,7 +1,6 @@
 package ioc
 
 import (
-	"fmt"
 	"ioc-container/pkg/utils"
 	"sync"
 )
@@ -9,8 +8,9 @@ import (
 // Container 容器
 type Container struct {
 	// components 实际组件存放的地方
-	components map[string]*Component
-	lock       sync.Mutex
+	components map[string]AbstractComponent
+	// controllers 控制器组件存放的地方
+	lock sync.Mutex
 }
 
 // containerIns 全局的容器实例
@@ -21,33 +21,31 @@ var initOnce sync.Once
 func InitContainer() {
 	initOnce.Do(func() {
 		container := Container{}
-		container.components = map[string]*Component{}
+		container.components = map[string]AbstractComponent{}
 		containerIns = &container
 	})
 }
 
 // RegisteComponent 添加组件
-func RegisteComponent(component *Component) (bool, error) {
+func RegisteComponent(component AbstractComponent) (bool, error) {
 	InitContainer()
 	containerIns.lock.Lock()
 	defer containerIns.lock.Unlock()
-	fmt.Println("component.name", component.name)
 
-	if _, ok := containerIns.components[component.name]; ok {
-		panic("[ioc-container] component has same name:" + component.name)
+	if _, ok := containerIns.components[component.GetName()]; ok {
+		panic("[ioc-container] component has same name:" + component.GetName())
 	}
-	containerIns.components[component.name] = component
+	containerIns.components[component.GetName()] = component
 	return true, nil
 }
 
 // GetComponent 获取组件
-func GetComponent(component *Component) (*Component, error) {
+func GetComponent(component AbstractComponent) (AbstractComponent, error) {
 	containerIns.lock.Lock()
 	defer containerIns.lock.Unlock()
-	strName := component.name
-	fmt.Println("strName", strName)
-	if component.name == "" {
-		strName = utils.GetComponentName(component.obj)
+	strName := component.GetName()
+	if component.GetName() == "" {
+		strName = utils.GetComponentName(component.GetObj())
 	}
 	if c, ok := containerIns.components[strName]; ok {
 		return c, nil

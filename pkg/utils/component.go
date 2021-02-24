@@ -7,6 +7,9 @@ import (
 
 // GetComponentName 获取组件的自定义名称
 func GetComponentName(obj interface{}) string {
+	if obj == nil {
+		panic("[ioc-container] GetComponentName param is nil")
+	}
 	objtype := reflect.TypeOf(obj)
 	objval := reflect.ValueOf(obj)
 

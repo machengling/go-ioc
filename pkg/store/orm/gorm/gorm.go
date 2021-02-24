@@ -61,3 +61,21 @@ func getPath(dbconfig store.DBConfig) string {
 	fmt.Println("path", path)
 	return path
 }
+
+/*
+三色标记法（默认所有的对象都是白色）
+（1）stop the world
+（2）找到所有的roots，标记为灰色，并加入队列
+（3）开启协程 gc write barrier（为后面监测被修改对象时，重新加入队列做处理）
+
+（4）start the world
+（5）将队列中的对象取出，并标记为黑色。
+（6）同时如果对象持有其他对象的指针引用，则将持有的对象加入到队列中
+（7）期间如果用户代码修改对象，那么会触发写屏障，将对象标记为灰色，并加入单独的扫描队列中
+
+（8）stop the world
+（9）将触发写屏障后，加入的列表，遍历出来，重新标记
+（10）start the world
+
+（11）清理标记为白色的对象
+*/
