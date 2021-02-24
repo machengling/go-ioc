@@ -8,15 +8,10 @@ import (
 
 type TestController struct{}
 
-func (c TestController) GetPath() string {
-	return "get"
-}
-func (c TestController) GetMethod() string {
-	return "GET"
-}
-
-func (c TestController) GetHandler() func(*gin.Context) {
-	return get
+func (c TestController) GetHandler() map[string]func(*gin.Context) {
+	return map[string]func(*gin.Context){
+		"GET@get": get,
+	}
 }
 
 func get(this *gin.Context) {
