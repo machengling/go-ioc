@@ -1,4 +1,4 @@
-module ioc-container
+module go-ioc
 
 go 1.15
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"ioc-container/cmd/controller"
-	"ioc-container/pkg/http/gin"
+	"go-ioc/cmd/controller"
+	"go-ioc/pkg/http/gin"
 )
 
 func main() {

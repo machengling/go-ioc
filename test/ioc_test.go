@@ -2,8 +2,8 @@ package test
 
 import (
 	"fmt"
-	"ioc-container/pkg/store"
-	"ioc-container/pkg/store/orm/gorm"
+	"go-ioc/pkg/store"
+	"go-ioc/pkg/store/orm/gorm"
 	"testing"
 )
 

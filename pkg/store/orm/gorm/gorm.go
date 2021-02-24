@@ -2,8 +2,8 @@ package gorm
 
 import (
 	"fmt"
-	"ioc-container/pkg/ioc"
-	"ioc-container/pkg/store"
+	"go-ioc/pkg/ioc"
+	"go-ioc/pkg/store"
 	"log"
 	"os"
 	"time"

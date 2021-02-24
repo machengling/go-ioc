@@ -1,7 +1,7 @@
 package ioc
 
 import (
-	"ioc-container/pkg/utils"
+	"go-ioc/pkg/utils"
 	"sync"
 )
 
@@ -33,7 +33,7 @@ func RegisteComponent(component AbstractComponent) (bool, error) {
 	defer containerIns.lock.Unlock()
 
 	if _, ok := containerIns.components[component.GetName()]; ok {
-		panic("[ioc-container] component has same name:" + component.GetName())
+		panic("[go-ioc] component has same name:" + component.GetName())
 	}
 	containerIns.components[component.GetName()] = component
 	return true, nil
