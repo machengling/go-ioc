@@ -2,9 +2,10 @@ package test
 
 import (
 	"fmt"
-	"go-ioc/pkg/store"
-	"go-ioc/pkg/store/orm/gorm"
 	"testing"
+
+	"github.com/machengling/go-ioc/pkg/store"
+	"github.com/machengling/go-ioc/pkg/store/orm/gorm"
 )
 
 func init() {

@@ -3,7 +3,8 @@ package ioc
 import (
 	"encoding/json"
 	"fmt"
-	"go-ioc/pkg/utils"
+
+	"github.com/machengling/go-ioc/pkg/utils"
 )
 
 // AbstractComponent 组件抽象化

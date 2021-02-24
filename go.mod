@@ -1,4 +1,4 @@
-module go-ioc
+module github.com/machengling/go-ioc
 
 go 1.15
 

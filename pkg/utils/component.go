@@ -8,14 +8,14 @@ import (
 // GetComponentName 获取组件的自定义名称
 func GetComponentName(obj interface{}) string {
 	if obj == nil {
-		panic("[go-ioc] GetComponentName param is nil")
+		panic("[github.com/machengling/go-ioc] GetComponentName param is nil")
 	}
 	objtype := reflect.TypeOf(obj)
 	objval := reflect.ValueOf(obj)
 
 	fmt.Println("Kind", objtype.Kind())
 	if objtype.Kind().String() != reflect.Ptr.String() {
-		panic("[go-ioc] param is not ptr")
+		panic("[github.com/machengling/go-ioc] param is not ptr")
 	}
 	strName := objtype.Name()
 
@@ -27,7 +27,7 @@ func GetComponentName(obj interface{}) string {
 			vals := objval.Method(i).Call(nil)
 
 			if len(vals) == 0 {
-				panic("[go-ioc] func ConponentName return nil")
+				panic("[github.com/machengling/go-ioc] func ConponentName return nil")
 			}
 			fmt.Println("vals", vals[0].String())
 			strName = vals[0].String()

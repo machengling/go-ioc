@@ -2,11 +2,12 @@ package gorm
 
 import (
 	"fmt"
-	"go-ioc/pkg/ioc"
-	"go-ioc/pkg/store"
 	"log"
 	"os"
 	"time"
+
+	"github.com/machengling/go-ioc/pkg/ioc"
+	"github.com/machengling/go-ioc/pkg/store"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
